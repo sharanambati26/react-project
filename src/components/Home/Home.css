@@ -1,0 +1,142 @@
+/* Home.css */
+
+.home-container {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+  background: #f4f6f8;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.left-box {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 1rem;
+  height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+.right-box {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.item-card {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-card:hover {
+  transform: translateY(-5px);
+}
+
+.item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 0.8rem;
+}
+
+.item-card h4 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.item-card p {
+  margin: 0.2rem 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.add-button,
+.qty-btn {
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.8rem;
+  background: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.qty-box {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.qty-btn:hover {
+  background: #0a58ca;
+}
+
+.qty-display {
+  padding: 0 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* New: Filter and Sort Panel UI */
+.filter-section {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.filter-section h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+  border-left: 4px solid #007bff;
+  padding-left: 0.5rem;
+}
+
+.filter-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.filter-section li {
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.4rem;
+  background: #f0f4ff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.filter-section li:hover {
+  background: #e0ecff;
+}
+
+.filter-section label {
+  display: block;
+  padding: 0.5rem 0;
+  color: #444;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.filter-section input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #007bff;
+}

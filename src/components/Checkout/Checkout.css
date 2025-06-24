@@ -1,0 +1,76 @@
+/* src/components/Checkout.css */
+
+.checkout-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.checkout-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  padding: 14px 16px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  transition: border-color 0.3s ease;
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.checkout-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.checkout-form h4 {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  color: #444;
+}
+
+.checkout-form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #555;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.pay-button {
+  padding: 14px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #4a90e2, #007aff);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.pay-button:hover {
+  background: linear-gradient(135deg, #007aff, #0052cc);
+}
