@@ -18,9 +18,9 @@ function Login() {
         e.preventDefault();
         try {
             const res = await axios.post('/login', form);
-            const { accessToken, refreshToken, username } = res.data;
+            const { accessToken, refreshToken, username, userid } = res.data;
 
-            login(accessToken, refreshToken, username);
+            login(accessToken, refreshToken, username, userid);
 
             const payload = JSON.parse(atob(accessToken.split('.')[1]));
             const role = payload.role;

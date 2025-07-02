@@ -11,14 +11,14 @@ export const AuthProvider = ({ children }) => {
 
   const { setCart } = useCart();
 
-  const login = (accessToken, refreshToken, username) => {
-    const newAuth = { accessToken, refreshToken, username };
+  const login = (accessToken, refreshToken, username, userid) => {
+    const newAuth = { accessToken, refreshToken, username, userid };
     setAuth(newAuth);
     localStorage.setItem('auth', JSON.stringify(newAuth));
   };
 
   const logout = () => {
-    setAuth({ accessToken: null, refreshToken: null, username: null });
+    setAuth({ accessToken: null, refreshToken: null, username: null, userid: null });
     localStorage.removeItem('auth');
     setCart([]);
     localStorage.removeItem('cart'); 
