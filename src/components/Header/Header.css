@@ -28,6 +28,7 @@ body {
   padding: 5px 10px;
   border-radius: 5px;
   border: none;
+  outline: none;
 }
 
 .navbar-links {
@@ -92,5 +93,20 @@ body {
 
 .profile-dropdown-item:hover {
   background-color: #339262;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    /* width: 100%; */
+    padding: 1rem !important;
+  }
+
+  .right-box {
+    margin-left: 0px;
+  }
+
+  .home-nav-link,.profile-name, .filter-section, .navbar-search {
+    display: none;
+  }
 }
   

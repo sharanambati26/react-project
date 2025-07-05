@@ -14,7 +14,9 @@ const Home = () => {
     const [visibleCount, setVisibleCount] = useState(4);
     const observerRef = useRef();
     const { searchTerm } = useSearch();
-
+    const [search, setSearch] = useState('');
+    const { setSearchTerm } = useSearch();
+    const [showMobileFilter, setShowMobileFilter] = useState(false);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -86,7 +88,6 @@ const Home = () => {
         filtered = filtered.filter(p => p.title.toLowerCase().includes(searchTerm.toLowerCase()));
     }
 
-
     const sorted = [...filtered].sort((a, b) => {
         switch (sort) {
             case 'low': return a.price - b.price;
@@ -99,27 +100,73 @@ const Home = () => {
 
     const visibleProducts = sorted.slice(0, visibleCount);
 
+    const toggleMobileFilter = () => setShowMobileFilter(true);
+    const closeMobileFilter = () => setShowMobileFilter(false);
+
     return (
         <div className="home-container">
             <div className="left-box">
                 <div className="filter-section">
                     <h4>Sort By</h4>
                     <ul>
-                        <li onClick={() => setSort('low')}>Price: Low to High</li>
-                        <li onClick={() => setSort('high')}>Price: High to Low</li>
-                        <li onClick={() => setSort('rating')}>Rating</li>
-                        <li onClick={() => setSort('latest')}>Latest</li>
-                        <li onClick={() => setSort('')}>Reset Sort</li>
+                        <li className={sort === 'low' ? 'active-sort' : ''} onClick={() => setSort('low')} > Price: Low to High </li>
+                        <li className={sort === 'high' ? 'active-sort' : ''} onClick={() => setSort('high')} > Price: High to Low </li>
+                        <li className={sort === 'rating' ? 'active-sort' : ''} onClick={() => setSort('rating')} > Rating </li>
+                        <li className={sort === 'latest' ? 'active-sort' : ''} onClick={() => setSort('latest')} > Latest </li>
+                        <li onClick={() => setSort('')} > Clear Sort </li>
                     </ul>
 
                     <h4>Filter By Category</h4>
-                    <label><input type="checkbox" onChange={() => handleFilterChange('electronics')} checked={filters.includes('electronics')} /> Electronics</label><br />
-                    <label><input type="checkbox" onChange={() => handleFilterChange('jewelery')} checked={filters.includes('jewelery')} /> Jewelry</label><br />
-                    <label><input type="checkbox" onChange={() => handleFilterChange("men's clothing")} checked={filters.includes("men's clothing")} /> Men's Clothing</label><br />
-                    <label><input type="checkbox" onChange={() => handleFilterChange("women's clothing")} checked={filters.includes("women's clothing")} /> Women's Clothing</label><br />
+                    <label><input className="filter-checkbox" type="checkbox" onChange={() => handleFilterChange('electronics')} checked={filters.includes('electronics')} /> Electronics</label>
+                    <label><input className="filter-checkbox" type="checkbox" onChange={() => handleFilterChange('jewelery')} checked={filters.includes('jewelery')} /> Jewelry</label>
+                    <label><input className="filter-checkbox" type="checkbox" onChange={() => handleFilterChange("men's clothing")} checked={filters.includes("men's clothing")} /> Men's Clothing</label>
+                    <label><input className="filter-checkbox" type="checkbox" onChange={() => handleFilterChange("women's clothing")} checked={filters.includes("women's clothing")} /> Women's Clothing</label>
                 </div>
             </div>
+            <div className='filter-mob-div'>
+                <input type="text" placeholder="Search..." className="home-search" value={search}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setSearch(value);
+                        setSearchTerm(value);
+                    }}
+                />
+                <div>
+                    <div className='filter-header-mob'>
+                        <button className='filter-button-mob' onClick={toggleMobileFilter}>Filters</button>
+                        {filters.length > 0 && (
+                            <div className='applied-filters'>
+                                {filters.map(f => (
+                                    <span key={f} className="applied-filter-badge">{f}</span>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                    {showMobileFilter && (
+                        <div className='filter-bg'>
+                            <div className="filter-mob">
+                                <h4>Sort By</h4>
+                                <ul>
+                                    <li className={sort === 'low' ? 'active-sort' : ''} onClick={() => setSort('low')} > Price: Low to High </li>
+                                    <li className={sort === 'high' ? 'active-sort' : ''} onClick={() => setSort('high')} > Price: High to Low </li>
+                                    <li className={sort === 'rating' ? 'active-sort' : ''} onClick={() => setSort('rating')} > Rating </li>
+                                    <li className={sort === 'latest' ? 'active-sort' : ''} onClick={() => setSort('latest')} > Latest </li>
+                                    <li onClick={() => setSort('')} > Clear Sort </li>
+                                </ul>
 
+                                <h4>Filter By Category</h4>
+                                <label><input className="filter-checkbox" type="checkbox" onChange={() => handleFilterChange('electronics')} checked={filters.includes('electronics')} /> Electronics</label>
+                                <label><input className="filter-checkbox" type="checkbox" onChange={() => handleFilterChange('jewelery')} checked={filters.includes('jewelery')} /> Jewelry</label>
+                                <label><input className="filter-checkbox" type="checkbox" onChange={() => handleFilterChange("men's clothing")} checked={filters.includes("men's clothing")} /> Men's Clothing</label>
+                                <label><input className="filter-checkbox" type="checkbox" onChange={() => handleFilterChange("women's clothing")} checked={filters.includes("women's clothing")} /> Women's Clothing</label>
+                            </div>
+                            <button className="filter-close-button" onClick={closeMobileFilter}>Apply</button>
+                        </div>
+                    )
+
+                    }
+                </div>
+            </div>
             <div className="right-box">
                 {visibleProducts.map((item) => {
                     const qty = getItemQuantity(item.id);

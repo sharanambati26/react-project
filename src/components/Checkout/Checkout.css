@@ -11,10 +11,18 @@
 }
 
 .checkout-container h2 {
-  font-size: 2rem;
+  font-size: 20px;
   font-weight: 600;
   margin-bottom: 24px;
   color: #333;
+  margin-top: 0;
+  text-align: center;
+}
+
+.checkout-content label {
+  /* margin-top: 20px; */
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .checkout-form {
@@ -40,13 +48,14 @@
 
 .checkout-form textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 50px;
 }
 
 .checkout-form h4 {
   font-size: 1.1rem;
   margin-top: 10px;
   color: #444;
+  margin-bottom: 10px;
 }
 
 .checkout-form label {
@@ -56,10 +65,11 @@
   font-size: 1rem;
   color: #555;
   cursor: pointer;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .pay-button {
+  margin-top: 10px;
   padding: 14px;
   font-size: 1rem;
   background: linear-gradient(135deg, #4a90e2, #007aff);
@@ -82,21 +92,25 @@
 .checkout-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
+  flex-direction: column;
 }
+
 
 .checkout-form {
   flex: 1 1 60%;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  border-radius: 5px;
 }
 
 .checkout-summary {
   flex: 1 1 35%;
   background: #f9f9f9;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
+  margin-bottom: 24px;
 }
 
 .checkout-summary ul {
@@ -110,7 +124,7 @@
 
 .pay-button {
   padding: 0.75rem;
-  background: #4b6e36;
+  background: #d06c19;
   color: #fff;
   border: none;
   border-radius: 4px;

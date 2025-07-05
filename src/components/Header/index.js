@@ -43,7 +43,9 @@ const Header = () => {
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                <img src="/assets/company-logo.png" alt="Logo" className="navbar-logo" />
+                <Link to="/">
+                    <img src="/assets/company-logo.png" alt="Logo" className="navbar-logo" />
+                </Link>
                 <input
                     type="text"
                     placeholder="Search..."
@@ -58,7 +60,7 @@ const Header = () => {
             </div>
 
             <div className="navbar-links">
-                <Link to="/">Home</Link>
+                <Link to="/" className='home-nav-link'>Home</Link>
                 <Link to="/cart" className="cart-link">
                     🛒 <span className="cart-count">{cartCount}</span>
                 </Link>
