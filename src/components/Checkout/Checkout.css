@@ -74,3 +74,50 @@
 .pay-button:hover {
   background: linear-gradient(135deg, #007aff, #0052cc);
 }
+
+.checkout-container {
+  padding: 2rem;
+}
+
+.checkout-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.checkout-form {
+  flex: 1 1 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checkout-summary {
+  flex: 1 1 35%;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.checkout-summary ul {
+  list-style: none;
+  padding: 0;
+}
+
+.checkout-summary li {
+  margin-bottom: 0.5rem;
+}
+
+.pay-button {
+  padding: 0.75rem;
+  background: #4b6e36;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pay-button:hover {
+  background: #3a5829;
+}
+
