@@ -46,7 +46,7 @@ const Header = () => {
                 <Link to="/">
                     <img src="/assets/company-logo.png" alt="Logo" className="navbar-logo" />
                 </Link>
-                <input
+                {/* <input
                     type="text"
                     placeholder="Search..."
                     className="navbar-search"
@@ -56,17 +56,16 @@ const Header = () => {
                         setSearch(value);
                         setSearchTerm(value);
                     }}
-                />
+                /> */}
             </div>
 
             <div className="navbar-links">
-                <Link to="/" className='home-nav-link'>Home</Link>
                 <Link to="/cart" className="cart-link">
                     🛒 <span className="cart-count">{cartCount}</span>
                 </Link>
-
+                <Link to="/" className='home-nav-link'>Home</Link>
                 {!auth?.accessToken ? (
-                    <Link to="/login">Login / Register</Link>
+                    <Link to="/login">Login</Link>
                 ) : (
                     <div ref={menuRef} className="profile-wrapper">
                         <div className="profile-toggle" onClick={toggleMenu}>

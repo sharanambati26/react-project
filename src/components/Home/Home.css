@@ -181,6 +181,14 @@
 	align-items: center;
 }
 
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px; /* Adjust as needed */
+  grid-column: 1 / -1; /* Makes it span full grid width if needed */
+}
+
 /* #################### MOBILE VERSION ################### */
 @media (max-width: 600px) {
 	.filter-mob-div {

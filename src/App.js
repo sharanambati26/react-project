@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 
 import Home from './components/Home';
+import Register from './components/Register';
 import Login from './components/Login';
 import Header from './components/Header';
 import Cart from './components/Cart';
@@ -22,6 +23,7 @@ const App = () => {
                             <Route path="/" element={<Home />} />
                             <Route path="/home" element={<Home />} />
                             <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />                           
                             <Route path="/cart" element={<Cart />} />
                             <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
                         </Routes>

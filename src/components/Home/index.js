@@ -4,7 +4,7 @@ import './Home.css';
 import axios from '../../api';
 import { useCart } from '../../CartContext';
 import { useSearch } from '../../SearchContext';
-
+import { ThreeDots, Oval, MagnifyingGlass } from 'react-loader-spinner';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -17,12 +17,15 @@ const Home = () => {
     const [search, setSearch] = useState('');
     const { setSearchTerm } = useSearch();
     const [showMobileFilter, setShowMobileFilter] = useState(false);
+    const [isProductsLoading, setIsProductsLoading] = useState(false);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
+                setIsProductsLoading(true);
                 const res = await axios.get('https://fakestoreapi.com/products');
                 setProducts(res.data);
+                setIsProductsLoading(false);
                 console.log('Products fetched!')
             } catch (error) {
                 console.error('Failed to fetch products:', error);
@@ -123,6 +126,7 @@ const Home = () => {
                     <label><input className="filter-checkbox" type="checkbox" onChange={() => handleFilterChange("women's clothing")} checked={filters.includes("women's clothing")} /> Women's Clothing</label>
                 </div>
             </div>
+
             <div className='filter-mob-div'>
                 <input type="text" placeholder="Search..." className="home-search" value={search}
                     onChange={(e) => {
@@ -167,31 +171,39 @@ const Home = () => {
                     }
                 </div>
             </div>
+
             <div className="right-box">
-                {visibleProducts.map((item) => {
-                    const qty = getItemQuantity(item.id);
-                    return (
-                        <div key={item.id} className="item-card">
-                            <img src={item.image} alt={item.title} className="item-image" />
-                            <h4>{item.title}</h4>
-                            <p>₹{Math.round(item.price * 85).toLocaleString()}</p>
-                            <p>⭐ {item.rating.rate} ({item.rating.count})</p>
-                            {qty === 0 ? (
-                                <button className="add-button" onClick={() => handleAddToCart(item)}>
-                                    🛒 Add to Cart
-                                </button>
-                            ) : (
-                                <div className="quantity-controls">
-                                    <button className="qty-btn" onClick={() => handleDecrease(item.id)}>-</button>
-                                    <span className="qty-display">{qty}</span>
-                                    <button className="qty-btn" onClick={() => handleIncrease(item.id)}>+</button>
-                                </div>
-                            )}
-                        </div>
-                    );
-                })}
+                {isProductsLoading ? (
+                    <div className="loader-container">
+                        <MagnifyingGlass visible={true} height="80" color="#046bc5" ariaLabel="line-wave-loading" />
+                    </div>
+                ) : (
+                    visibleProducts.map((item) => {
+                        const qty = getItemQuantity(item.id);
+                        return (
+                            <div key={item.id} className="item-card">
+                                <img src={item.image} alt={item.title} className="item-image" />
+                                <h4>{item.title}</h4>
+                                <p>₹{Math.round(item.price * 85).toLocaleString()}</p>
+                                <p>⭐ {item.rating.rate} ({item.rating.count})</p>
+                                {qty === 0 ? (
+                                    <button className="add-button" onClick={() => handleAddToCart(item)}>
+                                        🛒 Add to Cart
+                                    </button>
+                                ) : (
+                                    <div className="quantity-controls">
+                                        <button className="qty-btn" onClick={() => handleDecrease(item.id)}>-</button>
+                                        <span className="qty-display">{qty}</span>
+                                        <button className="qty-btn" onClick={() => handleIncrease(item.id)}>+</button>
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })
+                )}
                 <div ref={observerRef}></div>
             </div>
+
         </div>
     );
 };
